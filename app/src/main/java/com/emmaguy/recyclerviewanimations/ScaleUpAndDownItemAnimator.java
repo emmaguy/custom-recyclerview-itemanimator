@@ -20,9 +20,7 @@ public class ScaleUpAndDownItemAnimator extends DefaultItemAnimator {
     private final AccelerateInterpolator accelerateInterpolator = new AccelerateInterpolator(2f);
     private final DecelerateInterpolator decelerateInterpolator = new DecelerateInterpolator(2f);
 
-    // Maps to hold running animators. These are used when running a new change animation on an item that is
-    // already being animated. AnimatorMap is used to construct the new change animation based on where the
-    // previous one was at when it was interrupted.
+    // Used to construct the new change animation based on where the previous one was at when it was interrupted.
     private final ArrayMap<RecyclerView.ViewHolder, AnimatorInfo> animatorMap = new ArrayMap<>();
 
     @Override public boolean canReuseUpdatedViewHolder(@NonNull final RecyclerView.ViewHolder viewHolder) {
@@ -45,9 +43,8 @@ public class ScaleUpAndDownItemAnimator extends DefaultItemAnimator {
         long prevAnimPlayTime = 0;
         boolean firstHalf = false;
         if (runningInfo != null) {
-            // The information we need to construct the new animators is whether we
-            // are in the 'first half' (fading to black and rotating the old text out)
-            // and how far we are in whichever half is running
+            // The information we need to construct the new animators is whether we are in the 'first half'
+            // (scaling the size up) and how far we are into whichever half is running
             firstHalf = runningInfo.zoomInAnimator != null && runningInfo.zoomInAnimator.isRunning();
             prevAnimPlayTime = firstHalf ? runningInfo.zoomInAnimator.getCurrentPlayTime() : runningInfo.zoomOutAnimator.getCurrentPlayTime();
             // done with previous animation - cancel it
@@ -143,9 +140,8 @@ public class ScaleUpAndDownItemAnimator extends DefaultItemAnimator {
         }
     }
 
-    // Holds child animator objects for any change animation. Used when a new change
-    // animation interrupts one already in progress; the new one is constructed to start
-    // from where the previous one was at when the interruption occurred.
+    // Holds child animator objects for any change animation. Used when a new change animation interrupts one already
+    // in progress; the new one is constructed to start from where the previous one was at when the interruption occurred.
     private static class AnimatorInfo {
         final Animator overallAnim;
         final ValueAnimator zoomInAnimator;
