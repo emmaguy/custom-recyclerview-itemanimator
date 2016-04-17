@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity implements OnItemClickListen
         ButterKnife.bind(this);
 
         recyclerView.setAdapter(new ColouredTileAdapter(this, buildColourList()));
-        recyclerView.setItemAnimator(new ExpandItemAnimator());
+        recyclerView.setItemAnimator(new ScaleUpAndDownItemAnimator());
         recyclerView.setLayoutManager(new GridLayoutManager(this, 3));
     }
 
