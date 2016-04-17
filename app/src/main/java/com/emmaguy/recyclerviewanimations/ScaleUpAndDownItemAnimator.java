@@ -60,8 +60,8 @@ public class ScaleUpAndDownItemAnimator extends DefaultItemAnimator {
             scaleUpAnimator.setInterpolator(accelerateInterpolator);
             scaleUpAnimator.setDuration(DURATION_SCALE);
             scaleUpAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-                @Override public void onAnimationUpdate(final ValueAnimator animation) {
-                    float scale = (float) animation.getAnimatedValue();
+                @Override public void onAnimationUpdate(@NonNull final ValueAnimator animation) {
+                    final float scale = (float) animation.getAnimatedValue();
                     itemView.setScaleX(scale);
                     itemView.setScaleY(scale);
                 }
@@ -74,8 +74,8 @@ public class ScaleUpAndDownItemAnimator extends DefaultItemAnimator {
         scaleDownAnimator = ValueAnimator.ofFloat(MAX_SCALE, 1f);
         scaleDownAnimator.setInterpolator(decelerateInterpolator);
         scaleDownAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
-            @Override public void onAnimationUpdate(final ValueAnimator animation) {
-                float scale = (float) animation.getAnimatedValue();
+            @Override public void onAnimationUpdate(@NonNull final ValueAnimator animation) {
+                final float scale = (float) animation.getAnimatedValue();
                 itemView.setScaleX(scale);
                 itemView.setScaleY(scale);
             }
